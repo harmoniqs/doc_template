@@ -36,9 +36,7 @@ function generate_assets(root::String)
 
     assets_output = joinpath(src, "assets")
 
-    if generate_assets
-        cp(assets, assets_output, force=true)
-    end
+    cp(assets, assets_output, force=true)
 end
 
 
