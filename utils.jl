@@ -56,6 +56,12 @@ function generate_docs(
     makedocs_kwargs=NamedTuple(),
     deploydocs_kwargs=NamedTuple(),
 )
+    @info "Building Documenter site for " * package_name * ".jl"
+
+    if modules isa Module
+        modules = [modules]
+    end
+
     if make_index
         generate_index(root)
     end
