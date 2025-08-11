@@ -1,3 +1,5 @@
+export generate_docs
+
 using Documenter
 using Literate
 
