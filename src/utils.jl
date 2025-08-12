@@ -55,6 +55,7 @@ function generate_docs(
     format_kwargs=NamedTuple(),
     makedocs_kwargs=NamedTuple(),
     deploydocs_kwargs=NamedTuple(),
+    doctest_setup_meta_args::Dict{Module, Symbol} = Dict{Module, Symbol}(),
 )
     @info "Building Documenter site for " * package_name * ".jl"
 
@@ -97,6 +98,13 @@ function generate_docs(
         )),
         format_kwargs...,
     )
+
+    # for each mod in modules, make a call to DocMeta.setdocmeta!(module, :DocTestSetup, doctest_setup_meta_args; recursive=true)
+    for mod in modules
+        if haskey(doctest_setup_meta_args, mod)
+            DocMeta.setdocmeta!(mod, :DocTestSetup, doctest_setup_meta_args[mod]; recursive=true)
+        end
+    end
 
     makedocs(;
         modules=modules,
