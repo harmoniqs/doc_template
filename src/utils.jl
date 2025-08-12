@@ -55,7 +55,7 @@ function generate_docs(
     format_kwargs=NamedTuple(),
     makedocs_kwargs=NamedTuple(),
     deploydocs_kwargs=NamedTuple(),
-    doctest_setup_meta_args::Dict{Module, Symbol} = Dict{Module, Symbol}(),
+    doctest_setup_meta_args::Dict{Module, Expr} = Dict{Module, Expr}(),
 )
     @info "Building Documenter site for " * package_name * ".jl"
 
